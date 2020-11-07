@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "969529886832",
+    "firebase_url": "https://sunwinfashionwear.firebaseio.com",
+    "project_id": "sunwinfashionwear",
+    "storage_bucket": "sunwinfashionwear.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969529886832:android:78d3589928926097794cb5",
+        "android_client_info": {
+          "package_name": "com.ab.sunwinfashionwear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969529886832-l7eafgtbsl3d512dd69fkelk7e02qb22.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ab.sunwinfashionwear",
+            "certificate_hash": "bcb86590f3814337d11baf67dde2387d21059635"
+          }
+        },
+        {
+          "client_id": "969529886832-nmqps3mhds1uf0ng5mdai3ac39f2uphu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtb_0lXa7K-7TILsX6LEo8n9YcDL3Y4FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969529886832-nmqps3mhds1uf0ng5mdai3ac39f2uphu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

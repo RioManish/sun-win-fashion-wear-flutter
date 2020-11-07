@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>969529886832-rf3171tuv9a5oog7l1f3i6uu9ue5phol.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.969529886832-rf3171tuv9a5oog7l1f3i6uu9ue5phol</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>969529886832-l7eafgtbsl3d512dd69fkelk7e02qb22.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD7QknEeMyn4_h5VzehVwcZZ0uRjuaScSE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>969529886832</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mobileios.sunwinfashionwear</string>
+	<key>PROJECT_ID</key>
+	<string>sunwinfashionwear</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sunwinfashionwear.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:969529886832:ios:6d4f7cbd8011fa46794cb5</string>
+	<key>DATABASE_URL</key>
+	<string>https://sunwinfashionwear.firebaseio.com</string>
+</dict>
+</plist>
