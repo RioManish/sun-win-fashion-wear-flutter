@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sunwinfashionwear/view/dashboard/dashboard.dart';
 import 'package:sunwinfashionwear/view/login/login_page.dart';
-import 'package:sunwinfashionwear/view/otp/otp_verification.dart';
+import 'package:sunwinfashionwear/view/login/otp/otp_verification.dart';
 import 'package:sunwinfashionwear/view/splash/splash_page.dart';
 import 'package:sunwinfashionwear/view/wishList/wishlist_page.dart';
 

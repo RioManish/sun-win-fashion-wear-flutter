@@ -48,6 +48,8 @@ dependencies:
   connectivity: 0.4.9+2
   carousel_slider: 2.2.1
   cached_network_image: 2.3.2+1
+  fluttertoast: ^7.0.4
+
 
 
 

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sunwinfashionwear/common_widgets/Login_Screen/mobile_number_textfield.dart';
 import 'package:sunwinfashionwear/theme/colors.dart';
 import 'package:sunwinfashionwear/theme/fonts.dart';
@@ -12,9 +13,10 @@ import 'package:sunwinfashionwear/theme/styles.dart';
 import 'package:sunwinfashionwear/utils/ModalRoundedProgressBar.dart';
 import 'package:sunwinfashionwear/utils/common_functions/custom_snack_bar.dart';
 import 'package:sunwinfashionwear/utils/constants.dart';
-import 'package:sunwinfashionwear/view/otp/otp_verification.dart';
 
-import 'bloc/bloc.dart';
+import 'bloc/get_otp_bloc.dart';
+import 'otp/otp_verification.dart';
+
 
 class LoginPage extends StatefulWidget {
   // final FirebaseAnalytics analytics;
@@ -30,76 +32,48 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginPage> {
-  Utils util = Utils();
-  ProgressBarHandler _handler;
-  TextEditingController _mobilenoController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  GetOtpBloc loginBloc;
+  @override
+  void initState() {
+    mobileNumberController = TextEditingController();
+    loginBloc=GetOtpBloc();
+    super.initState();
+  }
 
-  _LoginFormState(// this.analytics, this.observer
-      );
+  @override
+  void dispose() {
+    mobileNumberController.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // var data = EasyLocalizationProvider.of(context).data;
+    BlocProvider<GetOtpBloc>(
+      create: (context) => loginBloc,
+      child: BlocConsumer<GetOtpBloc, GetOtpSate>(
+        builder: (context, state) {
+          return mainUI(context,state);
+        },
+        listener: (context, state) {
+          if(state is GetOtpSuccess)
+            {
+              Navigator.pushNamed(context, '/otpscreen',
+                  arguments: OtpVerification(mobileNumber: state.responseData.mobileNumber, otp: state.responseData.otp,));
 
-    var progressBar = ModalRoundedProgressBar(
-      //getting the handler
-      handleCallback: (handler) {
-        _handler = handler;
-        return;
-      },
+            }
+          else if(state is GetOtpFailed){
+              Fluttertoast.showToast(msg: state.error);
+          }
+        },
+      ),
     );
 
-    @override
-    void initState() {
-      super.initState();
-    }
-
-    @override
-    void dispose() {
-      super.dispose();
-    }
-
-    return mainUI(context);
-
-//     return BlocListener<LoginBloc, LoginState>(
-//       listener: (context, state) {
-//         if (state is OnSuccess) {
-//           print("Success");
-//           // Navigator.pushReplacement(
-//           //     context,
-//           //     new MaterialPageRoute(
-//           //         builder: (context) => Dashboard(
-//           //               selectedIndex: 0,
-//           //             )));
-//         } else if (state is OnFailure) {
-//           util.customGetSnackBarWithOutActionButton(
-//               "Error",
-//               (state.error),
-//               context); // snakBarMsg(state.error, ColorData.colorRed, context);
-//         } else if (state is ShowProgressBar) {
-//           _handler.show();
-//         } else if (state is HideProgressBar) {
-//           _handler.dismiss();
-//         }
-//       },
-//       child: BlocBuilder<LoginBloc, LoginState>(
-//         // ignore: missing_return
-//         builder: (context, state) {
-//           return
-//           Stack(children: <Widget>[mainUI(context), progressBar]);
-// //          return mainUI(state);
-//           // if (state is InitialLoginState) {
-//           //   mainUI();
-//           // }
-//         },
-//       ),
-//     );
   }
 
-  Widget mainUI(BuildContext context) {
+  Widget mainUI(BuildContext context,dynamic state) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -146,7 +120,7 @@ class _LoginFormState extends State<LoginPage> {
                             margin: EdgeInsets.fromLTRB(paddingTwenty,
                                 paddingTen, paddingTwenty, paddingTen),
                             child: LoginPageFields(
-                                _mobilenoController,
+                                mobileNumberController,
                                 "Mobile Number",
                                 "+91",
                                 Icons.edit,
@@ -162,10 +136,9 @@ class _LoginFormState extends State<LoginPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                          Navigator.pushNamed(context, '/otpscreen',
-                          arguments: OtpVerification(mobileNumber: "9087694", userId: 9, dialcode: "9087694", email: "balfadjfdsfsdfemail.com"));
+                        loginBloc.add(GetOTPButtonPressedEvent(mobileNumber:mobileNumberController.text.toString() ,countryId: 0,applicationId: 0));
                       },
-                      child: Container(
+                      child:(state is InitialGetOtpLoadingState)? Center(child: CircularProgressIndicator(),): Container(
                         height: 40.0,
                         width: (width / 1.0) - 10.0,
                         margin: EdgeInsets.fromLTRB(paddingTwenty, paddingTen,
